@@ -1,0 +1,39 @@
+{
+    "manifest_version": 2,
+    "name": "마이데이터 확장앱",
+    "version": "2.3",
+    "description": "확장앱 설명.",
+
+    "browser_action": {
+        "default_popup": "hello.html"
+    },
+
+    "permissions": [
+        "activeTab",
+        "storage",
+        "unlimitedStorage",
+        "notification"
+    ],
+
+    "background": {
+        "scripts": [
+            "bg1.js"
+          ],
+        "persistent": true
+    },
+
+    "content_scripts": [
+        {
+          "matches": [
+            "http://*/*",
+            "https://*/*",
+            "file://*/*"
+          ],
+          "js": [
+            "content.js"
+          ],
+          "run_at": "document_end",
+          "all_frames": true
+        }
+    ]
+}  
