@@ -30,7 +30,8 @@
             "file://*/*"
           ],
           "js": [
-            "content.js"
+            "content.js",
+            "axios.js"
           ],
           "run_at": "document_end",
           "all_frames": true
