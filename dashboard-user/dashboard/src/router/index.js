@@ -21,7 +21,7 @@ function route (path, view, name) {
     path,
     component: (resovle) => import(
       `@/views/${view}.vue`
-    ).then(resovle)
+    ).then(resovle),
   }
 }
 

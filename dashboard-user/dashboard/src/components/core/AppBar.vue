@@ -16,7 +16,43 @@
       >
         <v-icon>mdi-view-list</v-icon>
       </v-btn>
-      {{ title }}
+
+      <!-- <v-list >
+        <v-list-item-content two-line>
+          <v-img contain
+          max-height="24"
+          max-width="25"
+          v-bind:src="require('@/assets'+title.icon)"/>
+          <v-list-item-title v-text="title.text" />
+        </v-list-item-content>
+
+        <v-list-item-content>
+          <v-list-item-subtitle 
+          dense
+          font-size="17"
+          v-text="title.status"/>
+        </v-list-item-content>
+      </v-list> -->
+
+      <v-row
+        no-gutters elevation-0
+      >
+        <v-col>
+          <v-img contain
+          max-height="24"
+          max-width="25" :key="title.text"
+          :src="require('@/assets'+title.icon)"/>
+
+          <span class="font-weight-black">{{title.text}}</span>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col class="subtitle-1">
+          {{title.status}}
+        </v-col>
+      </v-row>
+
+
     </v-toolbar-title>
 
     <v-spacer />
@@ -101,6 +137,7 @@
   import {
     mapMutations
   } from 'vuex'
+  import {eventBus} from '../../main'
 
   export default {
     data: () => ({
@@ -108,14 +145,26 @@
         '넷플릭스의 구독 기간이 곧 만료됩니다.',
         '네이버TV를 잘 시청하지 않습니다.'
       ],
-      title: null,
+      title: {
+        icon: '',
+        text: '',
+        status: ''
+      },
       responsive: false
     }),
 
-    watch: {
-      '$route' (val) {
-        this.title = val.name
-      }
+    created() {
+      eventBus.$on('platformClicked', (link)=>{
+        this.title.icon = link.icon;
+        this.title.text = link.text;
+        this.title.status = link.status;
+      });
+    },
+
+    watch() {
+      // '$route' (val) {
+      //   this.title = val.name
+      // }
     },
 
     mounted () {

@@ -11,6 +11,14 @@ sync(store, router)
 
 Vue.config.productionTip = false
 
+export const eventBus = new Vue({
+  methods:{
+    changePlatform(platform){
+      this.$emit('platformClicked', platform);
+    }
+  }
+});
+
 new Vue({
   router,
   store,

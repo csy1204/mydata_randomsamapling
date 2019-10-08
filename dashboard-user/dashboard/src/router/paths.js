@@ -5,9 +5,14 @@
  */
 export default [
   {
-    path: '',
+    path: '/',
     // Relative to /src/views
-    view: 'Dashboard'
+    view: 'Home'
+  },
+  {
+    path: '/dashboard',
+    view: 'Dashboard',
+    name: 'Dashboard'
   },
   {
     path: '/user-profile',
@@ -35,9 +40,5 @@ export default [
     path: '/notifications',
     view: 'Notifications'
   },
-  {
-    path: '/upgrade',
-    name: 'Upgrade to PRO',
-    view: 'Upgrade'
-  }
+
 ]

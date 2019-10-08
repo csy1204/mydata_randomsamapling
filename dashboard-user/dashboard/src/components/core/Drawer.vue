@@ -44,7 +44,7 @@
       <v-list-item>
         <v-list-item-content>
           <div>
-            <v-btn to="/user-profile" class="btn-profile" depressed dark color="#5380ff">my profile</v-btn>
+            <v-btn class="btn-profile" depressed dark color="#5380ff">my profile</v-btn>
           </div>
         </v-list-item-content>
       </v-list-item>
@@ -62,6 +62,7 @@
         :key="i"
         :to="link.to"
         active-class="primary black--text"
+        @click = "platformClicked(link)"
       >
         <v-list-item-action>
           <v-img contain
@@ -89,6 +90,7 @@
     mapMutations,
     mapState
   } from 'vuex'
+  import {eventBus} from '../../main'
 
   export default {
     props: {
@@ -101,6 +103,12 @@
       links: [
         {
           to: '/',
+          icon: '/logo.png',
+          text: '전체',
+          status: ''
+        },
+        {
+          to: '/dashboard',
           icon: '/icon-youtube/icon-youtube.png',
           text: '유튜브 프리미엄',
           status: '2019.09.28 ~ 2019.10.28'
@@ -109,7 +117,7 @@
           to: '/user-profile',
           icon: '/icon-netflix/icon-netflix.png',
           text: '넷플릭스',
-          status: '2019.09.28 ~ 2019.10.28'
+          status: '2019.09.15 ~ 2019.10.15'
         },
         {
           to: '/table-list',
@@ -145,7 +153,10 @@
     },
 
     methods: {
-      ...mapMutations('app', ['setDrawer', 'toggleDrawer'])
+      ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
+      platformClicked(link){
+        eventBus.changePlatform(link);
+      }
     }
   }
 </script>

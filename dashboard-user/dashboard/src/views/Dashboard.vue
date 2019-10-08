@@ -3,7 +3,7 @@
     <v-row>
       <v-col
         cols="12"
-        lg="4"
+        lg="12"
       >
         <material-chart-card
           :data="dailySalesChart.data"
@@ -12,7 +12,7 @@
           type="Line"
         >
           <h4 class="title font-weight-light">
-            Daily Sales
+            나의 시청 시간 분포
           </h4>
 
           <p class="category d-inline-flex font-weight-light">
@@ -40,7 +40,7 @@
 
       <v-col
         cols="12"
-        lg="4"
+        lg="12"
       >
         <material-chart-card
           :data="emailsSubscriptionChart.data"
@@ -68,35 +68,7 @@
         </material-chart-card>
       </v-col>
 
-      <v-col
-        cols="12"
-        lg="4"
-      >
-        <material-chart-card
-          :data="dataCompletedTasksChart.data"
-          :options="dataCompletedTasksChart.options"
-          color="green"
-          type="Line"
-        >
-          <h3 class="title font-weight-light">
-            Completed Tasks
-          </h3>
-          <p class="category d-inline-flex font-weight-light">
-            Last Last Campaign Performance
-          </p>
-
-          <template v-slot:actions>
-            <v-icon
-              class="mr-2"
-              small
-            >
-              mdi-clock-outline
-            </v-icon>
-            <span class="caption grey--text font-weight-light">campaign sent 26 minutes ago</span>
-          </template>
-        </material-chart-card>
-      </v-col>
-
+    
       <v-col
         cols="12"
         sm="6"
@@ -406,6 +378,10 @@
   export default {
     data () {
       return {
+        userSubscription:{
+          platform: '유튜브 프리미엄',
+          status: '2019.09.28 ~ 2019.10.28'
+        },
         dailySalesChart: {
           data: {
             labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],

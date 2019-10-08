@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <p>naver tv</p>
+    <p>Home page</p>
   </v-container>
 </template>
 
