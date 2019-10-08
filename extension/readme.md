@@ -22,5 +22,3 @@
 |channel|채널명|string|
 |duration|전체 길이|float|
 |uptime|현재 영상 시간|float|
-
-
