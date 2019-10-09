@@ -45,6 +45,14 @@
           class="font-weight-black">{{title.text}}</span>
         </v-card>
       </v-card>
+
+      <v-card    
+        class="d-flex"
+        color="transparent"
+        flat
+        tile>
+        <span class="subtitle-1">{{title.status}}</span>
+      </v-card>
     </v-toolbar-title>
 
     <v-spacer />
@@ -150,7 +158,6 @@
       eventBus.$on('platformClicked', (link)=>{
         this.title = link;
       });
-
     },
 
     watch() {
