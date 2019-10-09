@@ -7,7 +7,9 @@
     flat
     height="120"
   >
-    <v-toolbar-title class="tertiary--text font-weight-light align-self-center">
+    <v-toolbar-title 
+    color="transparent"
+    class="tertiary--text font-weight-light align-self-center">
       <v-btn
         v-if="responsive"
         dark
@@ -17,42 +19,32 @@
         <v-icon>mdi-view-list</v-icon>
       </v-btn>
 
-      <!-- <v-list >
-        <v-list-item-content two-line>
-          <v-img contain
-          max-height="24"
-          max-width="25"
-          v-bind:src="require('@/assets'+title.icon)"/>
-          <v-list-item-title v-text="title.text" />
-        </v-list-item-content>
-
-        <v-list-item-content>
-          <v-list-item-subtitle 
-          dense
-          font-size="17"
-          v-text="title.status"/>
-        </v-list-item-content>
-      </v-list> -->
-
-      <v-row
-        no-gutters elevation-0
+      <v-card
+        class="d-flex"
+        color="transparent"
+        flat
+        tile
       >
-        <v-col>
+        <v-card
+          class="order-1 pa-2"
+          flat
+          color="transparent"
+        >
           <v-img contain
-          max-height="24"
-          max-width="25" :key="title.text"
-          :src="require('@/assets'+title.icon)"/>
-
-          <span class="font-weight-black">{{title.text}}</span>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col class="subtitle-1">
-          {{title.status}}
-        </v-col>
-      </v-row>
-
-
+                max-height="24"
+                max-width="25" :key="title.text"
+                flat
+                :src="require('@/assets'+title.icon)"/>     
+        </v-card>
+        <v-card
+          flat
+          class="order-2 pa-2"
+          color="transparent"
+        >
+          <span
+          class="font-weight-black">{{title.text}}</span>
+        </v-card>
+      </v-card>
     </v-toolbar-title>
 
     <v-spacer />
@@ -154,11 +146,11 @@
     }),
 
     created() {
+      console.log('created');
       eventBus.$on('platformClicked', (link)=>{
-        this.title.icon = link.icon;
-        this.title.text = link.text;
-        this.title.status = link.status;
+        this.title = link;
       });
+
     },
 
     watch() {
@@ -200,4 +192,5 @@
   #core-app-bar a {
     text-decoration: none;
   }
+
 </style>
