@@ -1,0 +1,35 @@
+from django.db import models
+
+# Create your models here.
+class Vlog(models.Model):
+    uid = models.CharField(max_length=500)
+    sid = models.CharField(max_length=500)
+    url = models.TextField()
+    referrer = models.TextField()
+    timestamp = models.IntegerField()
+    duration = models.FloatField()
+    uptime = models.FloatField()
+    title = models.TextField()
+    channel = models.CharField(max_length=500)
+    gender = models.IntegerField()
+    age= models.IntegerField()
+    useragent = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class Elog(models.Model):
+    uid = models.CharField(max_length=500)
+    sid = models.CharField(max_length=500)
+    url = models.TextField()
+    referrer = models.TextField()
+    timestamp = models.IntegerField()
+    duration = models.FloatField()
+    uptime = models.FloatField()
+    title = models.TextField()
+    channel = models.CharField(max_length=500)
+    gender = models.IntegerField()
+    age= models.IntegerField()
+    action = models.CharField(max_length=250)
+    label = models.CharField(max_length=250)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
