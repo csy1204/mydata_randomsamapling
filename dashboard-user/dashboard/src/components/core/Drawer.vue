@@ -10,12 +10,12 @@
     persistent
     width="260"
   >
-    <!-- <template v-slot:img="attrs">
+    <template v-slot:img="attrs">
       <v-img
         v-bind="attrs"
         gradient="to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)"
       />
-    </template> -->
+    </template>
 
     <v-list class="profile">
       <v-list-item>
@@ -53,6 +53,12 @@
     <v-divider class="mx-3 mb-3" />
 
     <v-list nav>
+      <v-list-item>
+        <span>서비스 추가</span>
+
+        <v-btn rounded small color="transparent">관리</v-btn>
+      </v-list-item>
+
       <!-- Bug in Vuetify for first child of v-list not receiving proper border-radius -->
       <div />
 
