@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <div class="text-right">
+      <!-- @click 추가하기 -->
       <v-btn class="ma-2" outlined color="#5380ff">마이데이터 다운로드</v-btn>
     </div>
 
@@ -10,8 +11,8 @@
           lg="12"
         >
           <material-chart-card
-            :data="dailySalesChart.data"
-            :options="dailySalesChart.options"
+            :data="userPattern.data"
+            :options="userPattern.options"
             color="#4b4d5b"
             type="Line"
           >
@@ -22,14 +23,28 @@
           </material-chart-card>
         </v-col>
     </v-row>
+
+    <!-- chart.js example -->
+
+    <h1>Demo examples of vue-chartjs</h1>
+    <div class="columns">
+      <div class="column">
+        <h3>Line Chart</h3>
+        <line-chart ref="chart"></line-chart>
+      </div>
+    </div>
   </v-container>
 </template>
 
 <script>
+  import LineChart from '@/components/charts/LineChart'
   export default {
+    components:{
+      LineChart,
+    },
     data() {
-      return{
-        dailySalesChart: {
+      return {
+        userPattern: { // 시청 패턴
             data: {
               labels: [9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],
               series: [
@@ -51,7 +66,29 @@
               },
             }
           },
+        
+        contentsRank: { // 컨텐츠 순위
+          data: {
+            platform: '',
+            thumbnail: '',
+            title: '',
+            percentage: '',
+          }
+        },
+
       }
-    }
+    },
+    created(){
+      console.log('on created');
+      
+      // TODO:   이 과정을 LineChart.vue에서 실행
+      /*
+      this.$axios.get('post/~~~')
+        .then((response) => {
+          this.userData = response.data // 이런 식으로 
+        });
+
+      */
+    },
   }
 </script>

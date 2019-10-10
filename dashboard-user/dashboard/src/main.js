@@ -6,9 +6,11 @@ import './plugins'
 import vuetify from './plugins/vuetify'
 import { sync } from 'vuex-router-sync'
 import 'vuetify/dist/vuetify.min.css'
+import axios from 'axios'
 
 sync(store, router)
 
+// Vue.prototype.$axios = axios;
 Vue.config.productionTip = false
 
 export const eventBus = new Vue({
