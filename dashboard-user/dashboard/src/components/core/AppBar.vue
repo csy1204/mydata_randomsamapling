@@ -26,7 +26,7 @@
         tile
       >
         <v-card
-          class="order-1 pa-2"
+          class="order-1 pa-3 justify-center align-center"
           flat
           color="transparent"
         >

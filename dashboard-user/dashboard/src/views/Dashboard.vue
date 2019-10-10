@@ -378,10 +378,6 @@
   export default {
     data () {
       return {
-        userSubscription:{
-          platform: '유튜브 프리미엄',
-          status: '2019.09.28 ~ 2019.10.28'
-        },
         dailySalesChart: {
           data: {
             labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
