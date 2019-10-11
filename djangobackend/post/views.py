@@ -15,7 +15,7 @@ from rest_framework import viewsets
 from . import models
 from . import serializers
 
-from .models import Vlog
+from .models import Vlog, Subscription
 
 class VlogViewset(viewsets.ModelViewSet):
     queryset = models.Vlog.objects.all()
@@ -55,3 +55,40 @@ def get_view_pattern(request):
             rows = cursor.fetchall()  
     data = [row[1]/sum2 for row in rows]
     return JsonResponse(data, safe=False)
+
+
+@csrf_exempt
+def get_subscription(request):
+    """sumary_line
+    
+    Keyword arguments:
+    uid - str, 유저 id
+    Return: 
+    """
+    sum2 = 1
+
+    if request.GET.get('uid'):
+        uid = request.GET.get('uid', 'young')
+        with connection.cursor() as cursor:
+            cursor.execute('select uid, platform, expire_at as c from post_subscription where uid = %s', [uid])
+            rows = cursor.fetchall()  
+    data = [row for row in rows][0]
+    return JsonResponse(data, safe=False)
+
+@csrf_exempt
+def post_subscription(request):
+    """sumary_line
+    
+    Keyword arguments:
+    uid - str, 유저 id
+    Return: 
+    """
+    sum2 = 1
+    print(request.GET)
+    _uid = request.GET.get('uid','shuka')
+    _platform = request.GET.get('platform', 'watcha')
+    _expire_at = request.GET.get('expire')
+    print(_uid, _platform, _expire_at)
+    Subscription.objects.create(uid=_uid, platform=_platform, expire_at=_expire_at)
+    print(Subscription.objects.all())    
+    return JsonResponse([1], safe=False)

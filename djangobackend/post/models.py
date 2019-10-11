@@ -37,3 +37,11 @@ class Elog(models.Model):
     label = models.CharField(max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+
+class Subscription(models.Model):
+    uid = models.CharField(max_length=500)
+    platform = models.CharField(max_length=100)
+    expire_at = models.TextField()
+
+

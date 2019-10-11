@@ -26,4 +26,6 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/view/top', post.views.get_hot_videos, name="hot_video"),
     path('api/view/pattern', post.views.get_view_pattern, name="view_pattern"),
+    path('api/view/subscription', post.views.get_subscription),
+    path('api/view/makesubscription', post.views.post_subscription)
 ]

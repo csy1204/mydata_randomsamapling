@@ -3,6 +3,30 @@ console.log("THIS IS CONTENT SCRIPTS!");
 console.log(document.title);
 console.log(document.URL);
 
+const getSubcription = () => {
+    var a = document.querySelector('body > div:nth-child(4)').getAttribute('data-react-router-data');
+    var s = JSON.parse(a).current_user.current_order_schedule
+    s = s.replace('년 ','.').replace('월 ','.').replace('일 ',' ')
+    const apiurl = "http://127.0.0.1:8000/api/view/makesubscription";
+    var params = {
+        uid: "shuka",
+        platform: "watch",
+        expire: s,
+    }
+    
+    console.log(params);
+    axios.get("http://127.0.0.1:8000/api/view/makesubscription?uid=shuka&platform=watcha&expire="+s)
+        .then((res)=>console.log(res))
+        .catch((err)=>console.log(err));
+}
+
+if (document.URL === 'https://play.watcha.net/home') {
+    setTimeout(()=>{
+        getSubcription();
+        console.log("Subscription Crawling");
+    }, 3000);
+    
+}
 
 
 const captureEvent = (e) => {
