@@ -72,7 +72,7 @@ def get_subscription(request):
         with connection.cursor() as cursor:
             cursor.execute('select uid, platform, expire_at as c from post_subscription where uid = %s', [uid])
             rows = cursor.fetchall()  
-    data = [row for row in rows][0]
+    data = [row for row in rows][-1]
     return JsonResponse(data, safe=False)
 
 @csrf_exempt

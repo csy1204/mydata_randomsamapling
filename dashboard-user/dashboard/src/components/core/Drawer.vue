@@ -145,60 +145,62 @@
         default: false
       }
     },
-    data: () => ({
-      allClicked:false,
-      checkboxes:{
-        checkbox1: false,
-        checkbox2: false,
-        checkbox3: false,
-        checkbox4: false,
-      },
-      dialog: false,
-      links: [
-        {
-          to: '/',
-          icon: '/logo.png',
-          text: '전체',
-          status: ''
+    data() {
+      return{
+        allClicked:false,
+        checkboxes:{
+          checkbox1: false,
+          checkbox2: false,
+          checkbox3: false,
+          checkbox4: false,
         },
-        {
-          to: '/dashboard',
-          icon: '/icon-youtube/icon-youtube.png',
-          text: '유튜브 프리미엄',
-          status: '2019.10.28 결제 예정'
-        },
-        {
-          to: '/table-list',
-          icon: '/icon-watcha/icon-watcha.png',
-          text: '왓챠플레이',
-          status: ''
-        },
-        {
-          to: '/user-profile',
-          icon: '/icon-netflix/icon-netflix.png',
-          text: '넷플릭스',
-          status: '2019.10.15 결제 예정'
-        },
-        {
-          to: '/typography',
-          icon: '/icon-twitch/icon-twitch.png',
-          text: '트위치',
-          status: '구독 채널 2개'
-        },
-        {
-          to: '/typography',
-          icon: '/icon-vlive/icon-vlive.png',
-          text: 'VLIVE',
-          status: '구독 채널 2개'
-        },
-        {
-          to: '/icons',
-          icon: '/icon-navertv/icon-navertv.png',
-          text: '네이버TV',
-          status: ''
-        },
-      ]
-    }),
+        dialog: false,
+        links: [
+          {
+            to: '/',
+            icon: '/logo.png',
+            text: '전체',
+            status: ''
+          },
+          {
+            to: '/dashboard',
+            icon: '/icon-youtube/icon-youtube.png',
+            text: '유튜브 프리미엄',
+            status: '2019.10.28 결제 예정'
+          },
+          {
+            to: '/table-list',
+            icon: '/icon-watcha/icon-watcha.png',
+            text: '왓챠플레이',
+            status: ''
+          },
+          {
+            to: '/user-profile',
+            icon: '/icon-netflix/icon-netflix.png',
+            text: '넷플릭스',
+            status: '2019.10.15 결제 예정'
+          },
+          {
+            to: '/typography',
+            icon: '/icon-twitch/icon-twitch.png',
+            text: '트위치',
+            status: '구독 채널 2개'
+          },
+          {
+            to: '/typography',
+            icon: '/icon-vlive/icon-vlive.png',
+            text: 'VLIVE',
+            status: '구독 채널 2개'
+          },
+          {
+            to: '/icons',
+            icon: '/icon-navertv/icon-navertv.png',
+            text: '네이버TV',
+            status: ''
+          },
+        ]
+      }
+    },
 
     computed: {
       ...mapState('app', ['image', 'color']),
@@ -224,8 +226,11 @@
         }
       },
         updateStatus(){
-          axios.get('http://127.0.0.1:8000/api/view/subscription').then(res => {
-            this.data.links[2].status = res.data;
+          let vm = this;
+          axios.get('http://127.0.0.1:8000/api/view/subscription?uid=shuka').then(res => {
+            console.log(res.data[2]);
+            // console.log(vm.data);
+            vm.links[2].status = res.data[2];
           })
         }
       },
