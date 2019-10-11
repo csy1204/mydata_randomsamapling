@@ -49,9 +49,48 @@
 
     <v-list nav>
       <div class="svcManage">
-        <v-subtitle1>서비스 추가</v-subtitle1>  
         <div class="my-2" style="display:inline;">
-          <v-btn text small>관리</v-btn>
+            <v-row justify="center">
+              <v-dialog v-model="dialog" scrollable max-width="900">
+                <template v-slot:activator="{ on }">
+                  <v-btn color="primary" text v-on="on">서비스 추가</v-btn>
+                </template>
+
+                <!-- Modal -->
+                <v-card style="padding: 40px 100px;" >
+                  <v-btn class="exit" text max-width="10" @click="dialog = false">
+                    <v-img contain 
+                    max-width="25"
+                    :src="require('@/assets/btn-exit.png')"></v-img>
+                  </v-btn>
+
+                  <v-card-title style="margin:0 auto;">서비스 이용을 위한 추가 동의 안내</v-card-title>
+
+                  <v-card-text style="padding: 30 130; height: 400px; margin: 0 auto;">
+                      <div fluid>
+                        <v-btn @click="clickAll" block color="#5380ff" outlined dark>모두 동의</v-btn>
+                      </div>
+
+                      <br>
+
+                      <div class="checkboxes" fluid>
+                        <v-checkbox class="checkbox" v-model="checkboxes.checkbox1" :label="`개인정보 수집 및 이용동의`"></v-checkbox>
+                        <v-checkbox class="checkbox" v-model="checkboxes.checkbox2" :label="`사용자 시청 정보:`"></v-checkbox>
+                        <v-checkbox class="checkbox" v-model="checkboxes.checkbox3" :label="`사용자 행동 정보`"></v-checkbox>
+                        <v-checkbox class="checkbox" v-model="checkboxes.checkbox4" :label="`사용자 구독 정보`"></v-checkbox>
+                      </div>
+                  </v-card-text>
+
+                  <v-card-actions style="margin: 0 auto;">
+                    <v-btn width="120" color="#333333" dark tile @click="dialog = false">확인</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </v-row>
+        </div>    
+
+        <div class="my-2" style="display:inline;">
+          <v-btn outlined rounded small>관리</v-btn>
         </div>    
 
       </div>
@@ -103,6 +142,13 @@
       }
     },
     data: () => ({
+      checkboxes:{
+        checkbox1: false,
+        checkbox2: false,
+        checkbox3: false,
+        checkbox4: false,
+      },
+      dialog: false,
       links: [
         {
           to: '/',
@@ -159,6 +205,11 @@
       ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
       platformClicked(link){
         eventBus.changePlatform(link);
+      },
+      clickAll(){
+        for(let i=0; i < Object.keys(this.checkboxes).length; i++){
+          this.checkboxes['checkbox'+(i+1)] = true;
+        }
       }
     }
   }
@@ -183,9 +234,9 @@
 
 .svcManage{
   margin:8px; 
-  border:1px solid #9fa4b0; 
+  /* border:1px solid #9fa4b0;  */
   padding:5px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   position: relative;
 
   display: flex;
@@ -193,5 +244,19 @@
   justify-content: space-between;
   align-items: center
 }
+
+.checkboxes{
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  align-items: left;
+  padding: 50px 80px;
+  border: 1px solid #d8d8d8; 
+}
+
+.checkbox{
+  margin: 0 !important;
+}
+
 
 </style>

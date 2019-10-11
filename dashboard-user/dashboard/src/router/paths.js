@@ -44,5 +44,9 @@ export default [
     path: '/recommendation',
     view: 'ContentRecommendation'
   },
+  {
+    path: '/result',
+    view: 'RecommendationResult'
+  }
 
 ]
