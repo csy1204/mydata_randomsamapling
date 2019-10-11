@@ -48,5 +48,9 @@ export default [
     path: '/result',
     view: 'RecommendationResult'
   },
+  {
+    path: '/download',
+    view: 'Download'
+  }
 
 ]

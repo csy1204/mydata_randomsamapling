@@ -7,6 +7,9 @@ import vuetify from './plugins/vuetify'
 import { sync } from 'vuex-router-sync'
 import 'vuetify/dist/vuetify.min.css'
 import axios from 'axios'
+import excel from 'vue-excel-export'
+ 
+Vue.use(excel)
 
 sync(store, router)
 
