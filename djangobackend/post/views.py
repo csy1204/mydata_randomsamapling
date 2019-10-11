@@ -40,15 +40,18 @@ def get_view_pattern(request):
     uid - str, 유저 id
     Return: 시간대별 패턴 리스트
     """
+    sum2 = 1
     if request.GET.get('age'):
         age = int(request.GET.get('age', 20))
         with connection.cursor() as cursor:
-            cursor.execute("SELECT hour, avg(c) FROM (select uid, hour, count(*) as c from post_vlog where age between %s and %s group by hour) group by hour", [age, age+9])
+            cursor.execute('SELECT hour, sum(c) FROM (select uid, hour, count(*) as c from post_vlog where age between %s and %s group by hour) group by hour', [age, age+9])
             rows = cursor.fetchall() 
+            cursor.execute('select count(distinct(uid)) as c from post_vlog where age between %s and %s', [age, age+9])
+            sum2 = cursor.fetchall()[0][0]
     elif request.GET.get('uid'):
         uid = request.GET.get('uid', 'young')
         with connection.cursor() as cursor:
             cursor.execute('select hour, count(uid) as c from post_vlog where uid = %s group by hour', [uid])
             rows = cursor.fetchall()  
-    data = [row for row in rows]
+    data = [row[1]/sum2 for row in rows]
     return JsonResponse(data, safe=False)
