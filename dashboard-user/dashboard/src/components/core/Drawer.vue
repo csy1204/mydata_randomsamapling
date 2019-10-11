@@ -67,15 +67,18 @@
                   <v-card-title style="margin:0 auto;">서비스 이용을 위한 추가 동의 안내</v-card-title>
 
                   <v-card-text style="padding: 30 130; height: 400px; margin: 0 auto;">
-                      <div fluid>
-                        <v-btn @click="clickAll" block color="#5380ff" outlined dark>모두 동의</v-btn>
+                      <div v-if="allClicked" fluid>
+                        <v-btn @click="clickAll" block color='#5380ff' outlined dark>모두 동의</v-btn>
+                      </div>
+                      <div v-else fluid>
+                        <v-btn @click="clickAll" block color='#333333' outlined dark>모두 동의</v-btn>
                       </div>
 
                       <br>
 
                       <div class="checkboxes" fluid>
                         <v-checkbox class="checkbox" v-model="checkboxes.checkbox1" :label="`개인정보 수집 및 이용동의`"></v-checkbox>
-                        <v-checkbox class="checkbox" v-model="checkboxes.checkbox2" :label="`사용자 시청 정보:`"></v-checkbox>
+                        <v-checkbox class="checkbox" v-model="checkboxes.checkbox2" :label="`사용자 시청 정보`"></v-checkbox>
                         <v-checkbox class="checkbox" v-model="checkboxes.checkbox3" :label="`사용자 행동 정보`"></v-checkbox>
                         <v-checkbox class="checkbox" v-model="checkboxes.checkbox4" :label="`사용자 구독 정보`"></v-checkbox>
                       </div>
@@ -142,6 +145,7 @@
       }
     },
     data: () => ({
+      allClicked:false,
       checkboxes:{
         checkbox1: false,
         checkbox2: false,
@@ -207,12 +211,13 @@
         eventBus.changePlatform(link);
       },
       clickAll(){
+        this.allClicked = !this.allClicked;
         for(let i=0; i < Object.keys(this.checkboxes).length; i++){
-          this.checkboxes['checkbox'+(i+1)] = true;
+          this.checkboxes['checkbox'+(i+1)] = !this.checkboxes['checkbox'+(i+1)];
+        }
         }
       }
     }
-  }
 </script>
 
 <style scoped>
