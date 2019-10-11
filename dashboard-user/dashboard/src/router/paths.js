@@ -40,5 +40,9 @@ export default [
     path: '/notifications',
     view: 'Notifications'
   },
+  {
+    path: '/recommendation',
+    view: 'ContentRecommendation'
+  },
 
 ]
