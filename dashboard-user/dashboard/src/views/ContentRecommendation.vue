@@ -8,7 +8,7 @@
         </v-list>
 
         <div class="text-center">
-            <v-btn color="#1d62ff" dark width="220">완료</v-btn>
+            <v-btn to="/result" color="#1d62ff" dark width="220">완료</v-btn>
         </div>
         <br>
         <v-row v-for="(r, i) in contents.row" :key="i">
