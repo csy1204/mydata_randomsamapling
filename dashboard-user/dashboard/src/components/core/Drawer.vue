@@ -18,19 +18,14 @@
     </template>
 
     <v-list class="profile">
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-avatar >
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/logos/v.png"
-              height="34"
-              contain
-            />
-          </v-list-item-avatar>
-        </v-list-item-content>
-      </v-list-item>
+      <br>
+      <v-img
+        src="@/assets/user-profile.png"
+        height="34"
+        contain
+      />
 
-      <v-list-item two-line>
+      <v-list-item two-line style="padding:0 !important;">
         <v-list-item-content>
           <v-list-item-title class="title">
             Sooji Kim
