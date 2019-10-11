@@ -23,5 +23,6 @@ router.register('vlog', post.views.VlogViewset)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
+    path('api/view/top', post.views.get_hot_videos, name="hot_video"),
 ]

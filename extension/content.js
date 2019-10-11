@@ -17,22 +17,50 @@ const captureEvent = (e) => {
 
 }
 
-const sendVlog = (e) => {
+const sendYTVlog = (e) => {
     const apiurl = "http://127.0.0.1:8000/api/vlog/";
     var v = new Date()
     var data = {
         "uid": "adsdaadsa",
         "sid": "dasds",
         "url": document.URL,
+        "platform": "Youtube",
         "referrer": document.referrer ? document.referrer: 'empty',
         "timestamp": v.getTime(),
         "duration": e.target.duration,
         "uptime": e.target.currentTime,
         "title": document.querySelector('#container > h1').innerText,
-        "channel": "aaa",
+        "channel": document.querySelector('#text > a').innerText,
         "gender": "1",
-        "age": "12",
+        "age": 23,
         "useragent": navigator.userAgent
+    }
+
+    console.log(data);
+    axios.post(apiurl, data)
+        .then((res)=>console.log(res))
+        .catch((err)=>console.log(err));
+}
+
+const sendYTElog = (e) => {
+    const apiurl = "http://127.0.0.1:8000/api/vlog/";
+    var v = new Date()
+    var data = {
+        "uid": "adsdaadsa",
+        "sid": "dasds",
+        "url": document.URL,
+        "platfrom": "Youtube",
+        "referrer": document.referrer ? document.referrer: 'empty',
+        "timestamp": v.getTime(),
+        "duration": e.target.duration,
+        "uptime": e.target.currentTime,
+        "title": document.querySelector('#container > h1').innerText,
+        "channel": document.querySelector('#text > a').innerText,
+        "gender": "1",
+        "age": "23",
+        "useragent": navigator.userAgent,
+        "action": "aa",
+        "label": "Aa",
     }
     console.log(data);
     axios.post(apiurl, data)
@@ -40,18 +68,16 @@ const sendVlog = (e) => {
         .catch((err)=>console.log(err));
 }
 
-var v;
 
-const videoCheck = async () => {
-    setInterval(()=>{
-        v = document.getElementsByTagName('video')[0];
-    }, 3000);
+// const videoCheck = async () => {
+//     setInterval(()=>{
+        
+//     }, 3000);
 
-}
-async function main() {
+// }
 
+var v = document.getElementsByTagName('video')[0];
 if (v!=undefined) {
-    clearInterval(videoCheck);
     document.querySelector('#top-level-buttons > ytd-toggle-button-renderer:nth-child(1)'); //좋아요
     document.querySelector('#top-level-buttons > ytd-toggle-button-renderer:nth-child(2)'); //싫어요
     document.querySelector('#top-level-buttons > ytd-toggle-button-renderer:nth-child(3)'); //공유하기
@@ -70,12 +96,10 @@ if (v!=undefined) {
     }
     console.log(v);
     v.addEventListener("click", (e)=>captureEvent(e));
-    v.addEventListener("play", (e)=>sendVlog(e));
+    v.addEventListener("play", (e)=>sendYTVlog(e));
     v.addEventListener("playing", (e)=>captureEvent(e));
     v.addEventListener("seeking", (e)=>captureEvent(e));
     v.addEventListener("seeked", (e)=>captureEvent(e));
 } else {
     console.log("Not Defined Video!")
 };
-};
-main();

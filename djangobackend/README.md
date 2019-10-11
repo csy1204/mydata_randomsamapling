@@ -26,8 +26,10 @@ python manage.py runserver
 ## API명세
 |URL|METHOD|Description|Params|Return|
 |---|---|---|---|---|
-|/api/posts|`GET`|전체 글을 조회합니다.||[...{Post}]|
-|/api/posts|`POST`|새로운 글을 작성합니다.|{title:'',content:''}|{Post}|
-|/api/posts/[id]|`GET`|특정 id의 글을 조회합니다.||{Post}|
-|/api/posts/[id]|`DELETE`|특정 id의 글을 삭제합니다.|||
+|/api/vlog|`GET`|전체 글을 조회합니다.||[...{Post}]|
+|/api/vlog|`POST`|새로운 글을 작성합니다.|{title:'',content:''}|{Post}|
+|/api/vlog/[id]|`GET`|특정 id의 글을 조회합니다.||{Post}|
+|/api/vlog/[id]|`DELETE`|특정 id의 글을 삭제합니다.|||
+|/api/view/top|`GET`|인기 Top 영상을 가져옵니다.|||
+|/api/view/pattern|`GET`|시청 패턴을 가져옵니다.|{}||
 
