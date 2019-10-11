@@ -31,21 +31,46 @@
       </div>
     </v-container>
 
+    <br>
     <v-divider></v-divider>
+    <br>
+
+    <v-row>
+      <v-col cols="6">
+        <h3>최근 일주일간 분포</h3>
+        <br>
+        <div style="max-width:70%; margin:0 auto;">
+          <last-week></last-week>
+        </div>
+      </v-col>
+
+      <v-col cols="6">
+        <h3>자주 보는 크리에이터</h3>
+        <br>
+        <favorite-creator></favorite-creator>
+      </v-col>
+    </v-row>
+
 
   </v-container>
 </template>
+
 
 <script>
   import WatchPattern from '@/components/charts/WatchPattern'
   import ContentRank from '@/components/charts/ContentRank'
   import RecommendVideo from '@/components/charts/RecommendVideo'
+  import FavoriteCreator from '@/components/charts/FavoriteCreator'
+  import LastWeek from '@/components/charts/LastWeek'
+
 
   export default {
     components:{
       WatchPattern,
       ContentRank,
       RecommendVideo,
+      FavoriteCreator,
+      LastWeek
     },
     data() {
       return {
@@ -73,3 +98,8 @@
     }
   }
 </script>
+
+<style>
+
+
+</style>
