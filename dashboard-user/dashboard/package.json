@@ -47,6 +47,7 @@
     "vue-cli-plugin-vuetify": "latest",
     "vue-cli-plugin-vuetify-essentials": "latest",
     "vue-template-compiler": "^2.6.10",
-    "vuetify-loader": "^1.2.2"
+    "vuetify-loader": "^1.2.2",
+    "webpack-bundle-tracker": "^0.4.3"
   }
 }

@@ -34,7 +34,7 @@ def get_hot_videos(request):
 @csrf_exempt
 def get_view_pattern(request):
     """sumary_line
-    
+    /api/view/pattern?age=20 | uid=young
     Keyword arguments:
     age - int, 나이 (ex) 20, 30)
     uid - str, 유저 id
@@ -51,7 +51,7 @@ def get_view_pattern(request):
     elif request.GET.get('uid'):
         uid = request.GET.get('uid', 'young')
         with connection.cursor() as cursor:
-            cursor.execute('select hour, count(*) as c from post_vlog where uid = %s group by hour', [uid])
+            cursor.execute('select hour, count(uid) as c from post_vlog where uid = %s group by hour', [uid])
             rows = cursor.fetchall()  
     data = [row[1]/sum2 for row in rows]
     return JsonResponse(data, safe=False)
