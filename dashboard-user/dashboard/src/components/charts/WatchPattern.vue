@@ -1,6 +1,7 @@
 <script>
   //Importing Line class from the vue-chartjs wrapper
   import {Line} from 'vue-chartjs'
+  
   //Exporting this so it can be used in other components
   export default { 
     extends: Line,
@@ -8,18 +9,28 @@
       return {
         datacollection: {
           //Data to be represented on x-axis
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
-                    'August', 'September', 'October', 'November', 'December'], 
+          labels: [9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24], 
           datasets: [
             {
-              label: 'Data One',
-              backgroundColor: '#f87979',
+              label: '나',
+              backgroundColor: '#f28cec',
               pointBackgroundColor: 'white',
-              borderWidth: 1,
-              pointBorderColor: '#249EBF',
+              borderWidth: 5,
+              borderColor: '#f28cec',
+              fill: false,
               //Data to be represented on y-axis
-              data: [40, 20, 30, 50, 90, 10, 20, 40, 50, 70, 90, 100]
-            }
+              data: [40, 20, 30, 50, 90, 10, 20, 40, 50, 70, 90, 100,23,36,40,10] //16개
+            },
+            {
+              label: '20대 여성 평균',
+              backgroundColor: '#5380ff',
+              pointBackgroundColor: 'white',
+              borderWidth: 5,
+              borderColor: '#5380ff',
+              fill: false,
+              //Data to be represented on y-axis
+              data: [30, 10, 50, 30, 20, 90, 30, 40, 60, 40, 90, 10, 21, 60, 30 ,10]
+            },
           ]
         },
         //Chart.js options that controls the appearance of the chart
@@ -35,7 +46,7 @@
             }],
             xAxes: [ {
               gridLines: {
-                display: false
+                display: true
               }
             }]
           },
@@ -43,22 +54,25 @@
             display: true
           },
           responsive: true,
-          maintainAspectRatio: false
+          maintainAspectRatio: false,
         }
       }
     },
     methods: {
         print(){
             console.log('im here!!@@@')
+        },
+        fillData(){
+          // TODO:
         }
     },
-    // TODO:
     created(){
         // 여기에서 axios를 받자.
+        this.fillData()
     },
+
     mounted () {
       //renderChart function renders the chart with the datacollection and options object.
-      // 여기서 axios를 받은 값을 업데이트하자.
       this.renderChart(this.datacollection, this.options)
     }
   }
