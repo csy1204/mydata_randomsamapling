@@ -66,22 +66,56 @@
 
                   <v-card-title style="margin:0 auto;">서비스 이용을 위한 추가 동의 안내</v-card-title>
 
-                  <v-card-text style="padding: 30 130; height: 400px; margin: 0 auto;">
-                      <div v-if="allClicked" fluid>
+                  <v-card-text style="padding: 30 130; height: 450px; margin: 0 auto;">
+                      <div fluid>
                         <v-btn @click="clickAll" block color='#5380ff' outlined dark>모두 동의</v-btn>
-                      </div>
-                      <div v-else fluid>
-                        <v-btn @click="clickAll" block color='#333333' outlined dark>모두 동의</v-btn>
                       </div>
 
                       <br>
+                      <v-flex xs12 sm12 md12 class="checkboxes" fluid>
+                        <v-switch
+                          v-model="checkboxes.checkbox1"
+                          class="checkbox"
+                          label="개인정보 수집 및 이용동의"
+                          color="#5380ff"
+                          persistent-hint
+                          hint="개인 식별을 위한 이용동의 >>"
+                        ></v-switch>
+                        <br>
+                        <v-switch
+                          v-model="checkboxes.checkbox2"
+                          class="checkbox"
+                          label="사용자 시청 정보"
+                          color="#5380ff"
+                          persistent-hint
+                          hint="맞춤형 서비스 제공을 위한 시청 데이터 수집 및 관리 >>"
+                        ></v-switch>
+                        <br>
+                        <v-switch
+                          v-model="checkboxes.checkbox3"
+                          class="checkbox"
+                          label="사용자 행동 정보"
+                          color="#5380ff"
+                          persistent-hint
+                          hint="맞춤형 서비스 제공을 위한 시청 데이터 수집 및 관리 >>"
+                        ></v-switch>
+                        <br>
+                        <v-switch
+                          v-model="checkboxes.checkbox4"
+                          class="checkbox"
+                          label="사용자 구독 정보"
+                          color="#5380ff"
+                          persistent-hint
+                          hint="구독 관리 서비스 제공 >>"
+                        ></v-switch>
+                      </v-flex>
 
-                      <div class="checkboxes" fluid>
+                      <!-- <div class="checkboxes" fluid>
                         <v-checkbox class="checkbox" v-model="checkboxes.checkbox1" :label="`개인정보 수집 및 이용동의`"></v-checkbox>
                         <v-checkbox class="checkbox" v-model="checkboxes.checkbox2" :label="`사용자 시청 정보`"></v-checkbox>
                         <v-checkbox class="checkbox" v-model="checkboxes.checkbox3" :label="`사용자 행동 정보`"></v-checkbox>
                         <v-checkbox class="checkbox" v-model="checkboxes.checkbox4" :label="`사용자 구독 정보`"></v-checkbox>
-                      </div>
+                      </div> -->
                   </v-card-text>
 
                   <v-card-actions style="margin: 0 auto;">
@@ -219,10 +253,28 @@
       platformClicked(link){
         eventBus.changePlatform(link);
       },
-      clickAll(){
-        this.allClicked = !this.allClicked;
+      isAllChecked(){
+        let flag = true;
         for(let i=0; i < Object.keys(this.checkboxes).length; i++){
-          this.checkboxes['checkbox'+(i+1)] = !this.checkboxes['checkbox'+(i+1)];
+          if(this.checkboxes['checkbox'+(i+1)] == false){
+            flag = false;
+          }
+        }
+        return flag
+      },
+
+      clickAll(){
+        if(this.isAllChecked()){
+          for(let i=0; i < Object.keys(this.checkboxes).length; i++){
+            this.checkboxes['checkbox'+(i+1)] = false;
+          }
+          this.allClicked = false;
+        }
+        else{
+          for(let i=0; i < Object.keys(this.checkboxes).length; i++){
+            if(this.checkboxes['checkbox'+(i+1)] == false)
+              this.checkboxes['checkbox'+(i+1)] = !this.checkboxes['checkbox'+(i+1)];
+          }
         }
       },
         updateStatus(){
@@ -277,6 +329,7 @@
   flex-direction: column;
   align-items: left;
   padding: 50px 80px;
+  padding-left: 200px;
   border: 1px solid #d8d8d8; 
 }
 
