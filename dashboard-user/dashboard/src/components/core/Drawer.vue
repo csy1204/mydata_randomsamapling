@@ -18,19 +18,14 @@
     </template>
 
     <v-list class="profile">
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-avatar >
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/logos/v.png"
-              height="34"
-              contain
-            />
-          </v-list-item-avatar>
-        </v-list-item-content>
-      </v-list-item>
+      <br>
+      <v-img
+        src="@/assets/user-profile.png"
+        height="34"
+        contain
+      />
 
-      <v-list-item two-line>
+      <v-list-item two-line style="padding:0 !important;">
         <v-list-item-content>
           <v-list-item-title class="title">
             Sooji Kim
@@ -53,11 +48,13 @@
     <v-divider class="mx-3 mb-3" />
 
     <v-list nav>
-      <v-list-item>
-        <span>서비스 추가</span>
+      <div class="svcManage">
+        <v-subtitle1>서비스 추가</v-subtitle1>  
+        <div class="my-2" style="display:inline;">
+          <v-btn text small>관리</v-btn>
+        </div>    
 
-        <v-btn rounded small color="transparent">관리</v-btn>
-      </v-list-item>
+      </div>
 
       <!-- Bug in Vuetify for first child of v-list not receiving proper border-radius -->
       <div />
@@ -182,6 +179,19 @@
     background-color: #5380ff;
     max-width:150px;
     font-size: 0.8rem;
+}
+
+.svcManage{
+  margin:8px; 
+  border:1px solid #9fa4b0; 
+  padding:5px;
+  border-radius: 5px;
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center
 }
 
 </style>

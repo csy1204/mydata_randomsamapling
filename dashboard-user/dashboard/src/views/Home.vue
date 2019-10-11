@@ -1,57 +1,105 @@
 <template>
   <v-container>
     <div class="text-right">
+      <v-btn to='/recommendation' class="ma-2" outlined color="#5380ff">컨텐츠 추천</v-btn>
       <v-btn class="ma-2" outlined color="#5380ff">마이데이터 다운로드</v-btn>
     </div>
 
     <v-row>
-        <v-col
-          cols="12"
-          lg="12"
-        >
-          <material-chart-card
-            :data="dailySalesChart.data"
-            :options="dailySalesChart.options"
-            color="#4b4d5b"
-            type="Line"
-          >
-            <h4 class="title font-weight-black">
-              나의 시청 시간 분포
-            </h4>
+      <v-col cols="6">
+        <h3>전체 컨텐츠 순위</h3>
+        <br>
+        <content-rank></content-rank>
+      </v-col>
 
-          </material-chart-card>
-        </v-col>
+      <v-col cols="6">
+        <h3>추천영상</h3>
+        <br>
+        <recommend-video></recommend-video>
+      </v-col>
     </v-row>
+
+    <br>
+    <v-divider></v-divider>
+    <br>
+
+    <v-container class="columns">
+      <div class="column">
+        <h3>시청 패턴</h3>
+        <br>
+        <watch-pattern ref="chart"></watch-pattern>
+      </div>
+    </v-container>
+
+    <br>
+    <v-divider></v-divider>
+    <br>
+
+    <v-row>
+      <v-col cols="6">
+        <h3>최근 일주일간 분포</h3>
+        <br>
+        <div style="max-width:70%; margin:0 auto;">
+          <last-week></last-week>
+        </div>
+      </v-col>
+
+      <v-col cols="6">
+        <h3>자주 보는 크리에이터</h3>
+        <br>
+        <favorite-creator></favorite-creator>
+      </v-col>
+    </v-row>
+
+
   </v-container>
 </template>
 
+
 <script>
+  import WatchPattern from '@/components/charts/WatchPattern'
+  import ContentRank from '@/components/charts/ContentRank'
+  import RecommendVideo from '@/components/charts/RecommendVideo'
+  import FavoriteCreator from '@/components/charts/FavoriteCreator'
+  import LastWeek from '@/components/charts/LastWeek'
+
+
   export default {
+    components:{
+      WatchPattern,
+      ContentRank,
+      RecommendVideo,
+      FavoriteCreator,
+      LastWeek
+    },
     data() {
-      return{
-        dailySalesChart: {
-            data: {
-              labels: [9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],
-              series: [
-                [12, 17, 7, 17, 23, 18, 38,40, 22, 36, 47, 22, 10, 50, 44, 2]
-              ]
-            },
-            options: {
-              lineSmooth: this.$chartist.Interpolation.cardinal({
-                tension: 50
-              }),
-              showPoint:false,
-              low: 0,
-              high: 60, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
-              chartPadding: {
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: 0
-              },
-            }
-          },
+      return {
+
       }
+    },
+    created(){
+      console.log('on created');
+      
+      // TODO:   이 과정을 LineChart.vue에서 실행
+      /*
+      this.$axios.get('post/~~~')
+        .then((response) => {
+          this.userData = response.data // 이런 식으로 
+        });
+
+      */
+    },
+
+    mounted(){
+    },
+
+    methods: {
+      
     }
   }
 </script>
+
+<style>
+
+
+</style>
