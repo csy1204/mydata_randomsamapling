@@ -131,6 +131,7 @@
 
 <script>
 // Utilities
+  import axios from 'axios';
   import {
     mapMutations,
     mapState
@@ -164,16 +165,22 @@
           to: '/dashboard',
           icon: '/icon-youtube/icon-youtube.png',
           text: '유튜브 프리미엄',
-          status: '2019.09.28 ~ 2019.10.28'
+          status: '2019.10.28 결제 예정'
+        },
+        {
+          to: '/table-list',
+          icon: '/icon-watcha/icon-watcha.png',
+          text: '왓챠플레이',
+          status: ''
         },
         {
           to: '/user-profile',
           icon: '/icon-netflix/icon-netflix.png',
           text: '넷플릭스',
-          status: '2019.09.15 ~ 2019.10.15'
+          status: '2019.10.15 결제 예정'
         },
         {
-          to: '/table-list',
+          to: '/typography',
           icon: '/icon-twitch/icon-twitch.png',
           text: '트위치',
           status: '구독 채널 2개'
@@ -215,7 +222,16 @@
         for(let i=0; i < Object.keys(this.checkboxes).length; i++){
           this.checkboxes['checkbox'+(i+1)] = !this.checkboxes['checkbox'+(i+1)];
         }
+      },
+        updateStatus(){
+          axios.get('http://127.0.0.1:8000/api/view/subscription').then(res => {
+            this.data.links[2].status = res.data;
+          })
         }
+      },
+
+      async mounted(){
+        await this.updateStatus();
       }
     }
 </script>

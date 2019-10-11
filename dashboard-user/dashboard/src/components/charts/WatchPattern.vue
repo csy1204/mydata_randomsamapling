@@ -20,7 +20,7 @@
               borderColor: '#f28cec',
               fill: false,
               //Data to be represented on y-axis
-              data: [] //16개
+              data: [10, 15, 22, 40, 32, 34, 11, 56, 40, 21, 32, 10, 22, 40, 20, 17] //16개
             },
             {
               label: '20대 여성 평균',
@@ -30,7 +30,7 @@
               borderColor: '#5380ff',
               fill: false,
               //Data to be represented on y-axis
-              data: []
+              data: [8, 20, 30, 20, 42, 54, 20, 34, 42, 25, 19, 17, 30, 32, 20, 16] 
             },
           ]
         },
@@ -69,16 +69,19 @@
           const res2 = await axios.get('http://127.0.0.1:8000/api/view/pattern?age=20');
           console.log(res2);
           this.datacollection.datasets[1].data  = res2.data;
-          
-          axios.get('http://127.0.0.1:8000/api/view/pattern?uid=idollove').then(res=>{
+
+          axios.get('http://127.0.0.1:8000/api/view/pattern?uid=shuka').then(res=>{
             console.log(res);
             this.datacollection.datasets[0].data = res.data;
           })
 
+          const res3 = await axios.get('http://127.0.0.1:8000/api/view/pattern?uid=shuka');
+          console.log(res3);
+          this.datacollection.datasets[0].data  = res3.data;
+
         }
     },
     created(){
-        // 여기에서 axios를 받자.
         this.fillData()
         console.log('created()');
     },
@@ -87,9 +90,9 @@
       this.fillData()
     },
 
-    mounted () {
+    async mounted () {
       console.log('mounted()');
-      this.fillData();
+      await this.fillData();
       //renderChart function renders the chart with the datacollection and options object.
       this.renderChart(this.datacollection, this.options)
     }

@@ -78,16 +78,7 @@
       }
     },
     created(){
-      console.log('on created');
-      
-      // TODO:   이 과정을 LineChart.vue에서 실행
-      /*
-      this.$axios.get('post/~~~')
-        .then((response) => {
-          this.userData = response.data // 이런 식으로 
-        });
-
-      */
+  
     },
 
     mounted(){
