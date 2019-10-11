@@ -25,4 +25,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/view/top', post.views.get_hot_videos, name="hot_video"),
+    path('api/view/pattern', post.views.get_view_pattern, name="view_pattern"),
 ]
