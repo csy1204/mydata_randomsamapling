@@ -1,6 +1,7 @@
 <script>
   //Importing Line class from the vue-chartjs wrapper
-  import {Line} from 'vue-chartjs'
+  import {Line} from 'vue-chartjs';
+  import axios from 'axios';
   
   //Exporting this so it can be used in other components
   export default { 
@@ -19,7 +20,7 @@
               borderColor: '#f28cec',
               fill: false,
               //Data to be represented on y-axis
-              data: [40, 20, 30, 50, 90, 10, 20, 40, 50, 70, 90, 100,23,36,40,10] //16개
+              data: [] //16개
             },
             {
               label: '20대 여성 평균',
@@ -29,7 +30,7 @@
               borderColor: '#5380ff',
               fill: false,
               //Data to be represented on y-axis
-              data: [30, 10, 50, 30, 20, 90, 30, 40, 60, 40, 90, 10, 21, 60, 30 ,10]
+              data: []
             },
           ]
         },
@@ -59,19 +60,36 @@
       }
     },
     methods: {
-        print(){
-            console.log('im here!!@@@')
-        },
-        fillData(){
-          // TODO:
+        async fillData(){
+          console.log('fillData()')
+          axios.get('http://127.0.0.1:8000/api/view/pattern?age=20').then(res => { 
+            console.log(res);
+            this.datacollection.datasets[1].data = res.data;
+          })
+          const res2 = await axios.get('http://127.0.0.1:8000/api/view/pattern?age=20');
+          console.log(res2);
+          this.datacollection.datasets[1].data  = res2.data;
+          
+          axios.get('http://127.0.0.1:8000/api/view/pattern?uid=idollove').then(res=>{
+            console.log(res);
+            this.datacollection.datasets[0].data = res.data;
+          })
+
         }
     },
     created(){
         // 여기에서 axios를 받자.
         this.fillData()
+        console.log('created()');
+    },
+    updated(){
+      console.log('updated()');
+      this.fillData()
     },
 
     mounted () {
+      console.log('mounted()');
+      this.fillData();
       //renderChart function renders the chart with the datacollection and options object.
       this.renderChart(this.datacollection, this.options)
     }
