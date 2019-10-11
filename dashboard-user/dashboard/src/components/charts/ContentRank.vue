@@ -9,6 +9,7 @@
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
+          @click="openLink(item)"
         >
           <v-list-item-icon>
             <v-list-item-title v-text="i+1"></v-list-item-title>
@@ -76,6 +77,9 @@
     methods: {
       fillData(){
         // TODO:
+      },
+      openLink(item){
+        window.open(item.link, "_blank");
       }
     }
   }
