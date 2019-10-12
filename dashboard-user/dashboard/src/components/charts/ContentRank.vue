@@ -1,7 +1,7 @@
 <template>
   <v-card
     class="mx-auto"
-    max-width="500"
+    max-width="800"
   >
     <v-list style="padding:20px;">
       <v-list-item-group v-model="model" class="rankingBoard">
@@ -64,7 +64,13 @@
           text: '깔깔티비',
           platform: 'youtube',
           link: 'https://www.youtube.com/watch?v=JdRcM4fLwgE',
-          view: 1012,
+          view: 10092,
+        },
+        {
+          text: '왕좌의게임',
+          platform: 'watcha',
+          link: 'https://www.youtube.com/watch?v=JdRcM4fLwgE',
+          view: 9812,
         },
       ],
       model: 1,

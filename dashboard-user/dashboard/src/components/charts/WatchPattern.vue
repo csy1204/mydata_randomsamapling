@@ -63,35 +63,35 @@
         async fillData(){
           console.log('fillData()')
           axios.get('http://127.0.0.1:8000/api/view/pattern?age=20').then(res => { 
-            console.log(res);
+            // console.log(res);
             this.datacollection.datasets[1].data = res.data;
           })
           const res2 = await axios.get('http://127.0.0.1:8000/api/view/pattern?age=20');
-          console.log(res2);
+          // console.log(res2);
           this.datacollection.datasets[1].data  = res2.data;
 
           axios.get('http://127.0.0.1:8000/api/view/pattern?uid=shuka').then(res=>{
-            console.log(res);
+            // console.log(res);
             this.datacollection.datasets[0].data = res.data;
           })
 
           const res3 = await axios.get('http://127.0.0.1:8000/api/view/pattern?uid=shuka');
-          console.log(res3);
+          // console.log(res3);
           this.datacollection.datasets[0].data  = res3.data;
 
         }
     },
     created(){
         this.fillData()
-        console.log('created()');
+        // console.log('created()');
     },
     updated(){
-      console.log('updated()');
+      // console.log('updated()');
       this.fillData()
     },
 
     async mounted () {
-      console.log('mounted()');
+      // console.log('mounted()');
       await this.fillData();
       //renderChart function renders the chart with the datacollection and options object.
       this.renderChart(this.datacollection, this.options)

@@ -1,7 +1,7 @@
 <template>
   <v-card
     class="mx-auto"
-    max-width="500"
+    max-width="800"
   >
     <v-list style="padding:20px;">
       <v-list-item-group v-model="model" class="rankingBoard">
@@ -50,21 +50,27 @@
         },
         {
           text: '알라딘',
-          platform: 'netflix',
+          platform: 'watcha',
           link: 'https://www.youtube.com/watch?v=JdRcM4fLwgE',
-          view: 11230,
+          view: 112231,
         },
         {
           text: '[사나고] 3D펜으로 고양이 만들기',
           platform: 'youtube',
           link: 'https://www.youtube.com/watch?v=JdRcM4fLwgE',
-          view: 11,
+          view: 98124,
         },
         {
           text: '슈카월드 리니지',
           platform: 'twitch',
           link: 'https://www.youtube.com/watch?v=JdRcM4fLwgE',
-          view: 10,
+          view: 3872,
+        },
+        {
+          text: 'Friends',
+          platform: 'netflix',
+          link: 'https://www.youtube.com/watch?v=JdRcM4fLwgE',
+          view: 2091,
         },
       ],
       model: 1,

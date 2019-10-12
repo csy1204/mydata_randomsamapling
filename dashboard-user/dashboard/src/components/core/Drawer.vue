@@ -110,12 +110,6 @@
                         ></v-switch>
                       </v-flex>
 
-                      <!-- <div class="checkboxes" fluid>
-                        <v-checkbox class="checkbox" v-model="checkboxes.checkbox1" :label="`개인정보 수집 및 이용동의`"></v-checkbox>
-                        <v-checkbox class="checkbox" v-model="checkboxes.checkbox2" :label="`사용자 시청 정보`"></v-checkbox>
-                        <v-checkbox class="checkbox" v-model="checkboxes.checkbox3" :label="`사용자 행동 정보`"></v-checkbox>
-                        <v-checkbox class="checkbox" v-model="checkboxes.checkbox4" :label="`사용자 구독 정보`"></v-checkbox>
-                      </div> -->
                   </v-card-text>
 
                   <v-card-actions style="margin: 0 auto;">
@@ -280,7 +274,7 @@
         updateStatus(){
           let vm = this;
           axios.get('http://127.0.0.1:8000/api/view/subscription?uid=shuka').then(res => {
-            console.log(res.data[2]);
+            // console.log(res.data[2]);
             // console.log(vm.data);
             vm.links[2].status = res.data[2];
           })

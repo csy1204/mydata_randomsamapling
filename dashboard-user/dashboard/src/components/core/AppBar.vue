@@ -6,6 +6,7 @@
     color="transparent"
     flat
     height="120"
+    style="padding: 50 30px;"
   >
     <v-toolbar-title 
     color="transparent"
@@ -154,7 +155,7 @@
     }),
 
     created() {
-      console.log('created');
+      // console.log('created');
       eventBus.$on('platformClicked', (link)=>{
         this.title = link;
       });

@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container style="padding:50px;">
     <div class="text-right">
       <v-btn to='/recommendation' class="ma-2" outlined color="#5380ff">컨텐츠 추천</v-btn>
       <v-btn to='/download' class="ma-2" outlined color="#5380ff">마이데이터 다운로드</v-btn>
